@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduate Intern Evaluation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #fff;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        /* Header Section */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo {
+            width: 140px;
+            height: auto;
+            display: block;
+        }
+        
+        .university-name {
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+        
+        .header-right {
+            text-align: right;
+        }
+        
+        .header-right p {
+            margin: 2px 0;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .header-right h1 {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 5px 0;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Student Info Grid */
+        .student-info {
+            border: 2px solid #000;
+            margin-bottom: 15px;
+        }
+        
+        .info-row {
+            display: grid;
+            border-bottom: 2px solid #000;
+        }
+        
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        
+        .info-row.three-col {
+            grid-template-columns: 3fr 2fr 0.4fr;
+        }
+        
+        .info-row.three-col-equal {
+            grid-template-columns: 1.5fr 1.5fr 2fr;
+        }
+        
+        .info-cell {
+            padding: 5px 8px;
+            border-right: 2px solid #000;
+        }
+        
+        .info-cell:last-child {
+            border-right: none;
+        }
+        
+        .info-cell label {
+            display: block;
+            font-size: 9px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+        
+        .info-cell input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #333;
+            padding: 2px 0;
+            font-size: 12px;
+            background: transparent;
+        }
+        
+        /* Instructions Box */
+        .instructions {
+            border: 2px solid #000;
+            padding: 10px;
+            margin: 15px 0;
+            font-size: 9px;
+            line-height: 1.4;
+        }
+        
+        .instructions p {
+            margin: 0;
+        }
+        
+        /* Evaluation Table */
+        .evaluation-table {
+            width: 100%;
+            border: 2px solid #000;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .evaluation-table th,
+        .evaluation-table td {
+            border: 2px solid #000;
+            padding: 8px;
+            font-size: 11px;
+        }
+        
+        .evaluation-table th {
+            background: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .evaluation-table td:first-child {
+            text-align: left;
+            font-weight: normal;
+        }
+        
+        .evaluation-table td:first-child strong {
+            font-weight: bold;
+        }
+        
+        .evaluation-table td:not(:first-child) {
+            text-align: center;
+            width: 100px;
+        }
+        
+        .checkbox-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .checkbox-wrapper input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        /* Permanent Position Question */
+        .permanent-position {
+            margin: 15px 0;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .permanent-position strong {
+            font-weight: bold;
+        }
+        
+        .permanent-position label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+        }
+        
+        .permanent-position input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        /* Comments Sections */
+        .comments-section {
+            margin: 15px 0;
+        }
+        
+        .comments-section label {
+            display: block;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        
+        .comments-line {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #000;
+            margin-bottom: 8px;
+        }
+        
+        .comments-section textarea {
+            width: 100%;
+            min-height: 60px;
+            border: 1px solid #333;
+            padding: 5px;
+            font-size: 11px;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Signature Section */
+        .signature-grid {
+            display: grid;
+            gap: 0;
+            margin: 15px 0;
+        }
+        
+        .signature-row {
+            display: grid;
+            border-bottom: 1px solid #000;
+            padding: 8px 0;
+        }
+        
+        .signature-row.two-col {
+            grid-template-columns: 2fr 1fr;
+        }
+        
+        .signature-row.three-col {
+            grid-template-columns: 2fr 1fr 1fr;
+        }
+        
+        .signature-field {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .signature-field label {
+            font-size: 10px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        
+        .signature-field input {
+            flex: 1;
+            border: none;
+            border-bottom: 1px solid #333;
+            padding: 2px 5px;
+            font-size: 11px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 9px;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #000;
+        }
+        
+        /* Submit Button */
+        .submit-button {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .submit-button button {
+            background-color: #003d7a;
+            color: white;
+            padding: 12px 40px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        
+        .submit-button button:hover {
+            background-color: #002952;
+        }
+        
+        .required {
+            color: red;
+        }
+        
+        @media print {
+            .submit-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+         
+                <img src="logo.png" alt="Embry-Riddle Aeronautical University" class="logo">
+                
+                <div class="university-name">EMBRY-RIDDLE<br>AERONAUTICAL UNIVERSITY</div>
+            </div>
+            <div class="header-right">
+                <p>Cooperative Education/Internship Program</p>
+                <h1>GRADUATE INTERN EVALUATION</h1>
+                <p>1 AEROSPACE BLVD. DAYTONA BEACH, FL 32114 TEL (386)226-6054</p>
+            </div>
+        </div>
+
+        <!-- Form Start -->
+        <form action="https://formspree.io/f/mdkpqzvk" method="POST">
+            
+            <!-- Student Information -->
+            <div class="student-info">
+                <div class="info-row three-col">
+                    <div class="info-cell">
+                        <label>Student Last Name <span class="required">*</span></label>
+                        <input type="text" name="student_last_name" required>
+                    </div>
+                    <div class="info-cell">
+                        <label>First Name <span class="required">*</span></label>
+                        <input type="text" name="student_first_name" required>
+                    </div>
+                    <div class="info-cell">
+                        <label>MI</label>
+                        <input type="text" name="middle_initial" maxlength="1">
+                    </div>
+                </div>
+                
+                <div class="info-row three-col-equal">
+                    <div class="info-cell">
+                        <label>Student ID Number <span class="required">*</span></label>
+                        <input type="text" name="student_id" required>
+                    </div>
+                    <div class="info-cell">
+                        <label>Academic Term <span class="required">*</span></label>
+                        <input type="text" name="academic_term" placeholder="e.g., Summer 2023" required>
+                    </div>
+                    <div class="info-cell">
+                        <label>Student Email <span class="required">*</span></label>
+                        <input type="email" name="student_email" required>
+                    </div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-cell">
+                        <label>Company Name <span class="required">*</span></label>
+                        <input type="text" name="company_name" required>
+                    </div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-cell">
+                        <label>Position Title <span class="required">*</span></label>
+                        <input type="text" name="position_title" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="instructions">
+                <p><strong>INSTRUCTIONS FOR SUPERVISOR</strong> - Please check the box under the appropriate level of performance for each area. The levels of performance are as follows: <strong>SUPERIOR</strong> - Performance was consistently and noticeably above job requirements. <strong>ABOVE AVERAGE</strong> - Performance was often above the minimum job requirements. <strong>AVERAGE</strong> - Performance was consistent with the job requirements. <strong>BELOW AVERAGE</strong> - Performance was sometimes below what the job required. <strong>POOR</strong> - Performance was often below what the job required.</p>
+            </div>
+
+            <!-- Evaluation Table -->
+            <table class="evaluation-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Superior</th>
+                        <th>Above Average</th>
+                        <th>Average</th>
+                        <th>Below Average</th>
+                        <th>Poor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Technical Knowledge</strong> - Technical knowledge required of the job</td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="technical_knowledge" value="Superior" required></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="technical_knowledge" value="Above Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="technical_knowledge" value="Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="technical_knowledge" value="Below Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="technical_knowledge" value="Poor"></div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quality of Work</strong> - Accuracy of work and consistency of performance</td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="quality_of_work" value="Superior" required></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="quality_of_work" value="Above Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="quality_of_work" value="Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="quality_of_work" value="Below Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="quality_of_work" value="Poor"></div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quantity of Work</strong> - Performance of acceptable work in relation to time</td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="quantity_of_work" value="Superior" required></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="quantity_of_work" value="Above Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="quantity_of_work" value="Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="quantity_of_work" value="Below Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="quantity_of_work" value="Poor"></div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Communication</strong> - Expresses ideas & opinions effectively, both orally and in writing</td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="communication" value="Superior" required></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="communication" value="Above Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="communication" value="Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="communication" value="Below Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="communication" value="Poor"></div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Attitude</strong> - Willingness and disposition to do the job</td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="attitude" value="Superior" required></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="attitude" value="Above Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="attitude" value="Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="attitude" value="Below Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="attitude" value="Poor"></div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dependability</strong> - Willingness to accept responsibility</td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="dependability" value="Superior" required></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="dependability" value="Above Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="dependability" value="Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="dependability" value="Below Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="dependability" value="Poor"></div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Attendance</strong> - Reliability to do the job</td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="attendance" value="Superior" required></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="attendance" value="Above Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="attendance" value="Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="attendance" value="Below Average"></div></td>
+                        <td><div class="checkbox-wrapper"><input type="radio" name="attendance" value="Poor"></div></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Permanent Position Question -->
+            <div class="permanent-position">
+                <strong>Upon his/her graduation, would you offer this student a permanent position if one were available?</strong>
+                <label>
+                    <input type="radio" name="permanent_position" value="Yes" required>
+                    Yes
+                </label>
+                <label>
+                    <input type="radio" name="permanent_position" value="No">
+                    No
+                </label>
+            </div>
+
+            <!-- Comments -->
+            <div class="comments-section">
+                <label>Comments:</label>
+                <div class="comments-line"></div>
+                <textarea name="supervisor_comments" placeholder="Supervisor comments..."></textarea>
+            </div>
+
+            <div class="comments-section">
+                <label>Comments by Graduate Intern:</label>
+                <div class="comments-line"></div>
+                <textarea name="intern_comments" placeholder="Intern comments..."></textarea>
+            </div>
+
+            <!-- Signatures -->
+            <div class="signature-grid">
+                <div class="signature-row">
+                    <div class="signature-field">
+                        <label>SUPERVISOR NAME/TITLE/EMAIL: <span class="required">*</span></label>
+                        <input type="text" name="supervisor_info" placeholder="Name, Title, Email" required>
+                    </div>
+                </div>
+                
+                <div class="signature-row two-col">
+                    <div class="signature-field">
+                        <label>SUPERVISOR SIGNATURE: <span class="required">*</span></label>
+                        <input type="text" name="supervisor_signature" placeholder="Type full name" required>
+                    </div>
+                    <div class="signature-field">
+                        <label>DATE: <span class="required">*</span></label>
+                        <input type="date" name="supervisor_date" required>
+                    </div>
+                </div>
+                
+                <div class="signature-row three-col">
+                    <div class="signature-field">
+                        <label>STUDENT SIGNATURE: <span class="required">*</span></label>
+                        <input type="text" name="student_signature" placeholder="Type full name" required>
+                    </div>
+                    <div class="signature-field">
+                        <label>DATE: <span class="required">*</span></label>
+                        <input type="date" name="student_date" required>
+                    </div>
+                    <div class="signature-field">
+                        <label>DEGREE: <span class="required">*</span></label>
+                        <input type="text" name="degree" placeholder="e.g., MBA" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                WHITE: Career Services &nbsp;&nbsp; YELLOW: Program Coordinator &nbsp;&nbsp; 1/2022
+            </div>
+
+            <!-- Submit Button -->
+            <div class="submit-button">
+                <button type="submit">Submit Evaluation</button>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        // Auto-fill today's date
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInputs = document.querySelectorAll('input[type="date"]');
+            dateInputs.forEach(input => {
+                if (!input.value) {
+                    input.value = today;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
